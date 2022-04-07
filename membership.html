@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title>Document</title>
+    
+    <style>
+            body{
+        background-color: #fdf9ee;
+        font-family: 'Google Sans', Roboto, Helvetica, Arial, sans-serif;
+      }
+     #introEntire, .whiteRoundedBox {
+    /* font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif; */
+    /* word-wrap: break-word; */
+    /* transition: box-shadow 280ms cubic-bezier(0.4,0,0.2,1); */
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    /* display: flex; */
+    
+    background-color: white;
+    /* background-color: #fff; */
+    /* position: relative; */
+    /* box-shadow: none; */
+    }
+
+    body{
+        width:800px;
+        margin:0 auto;
+    }
+
+   
+
+    #darkOrange{
+        
+    /* word-wrap: break-word; */
+    /* border-top-left-radius: 8px; */
+    /* border-top-right-radius: 8px; */
+    height: 10px;
+    /* left: -1px; */
+    /* position: absolute; */
+    /* top: -1px; */
+    /* width: calc(100% + 2px); */
+    background-color: rgb(246, 227, 171);
+    color: rgba(0, 0, 0, 1);
+    }
+
+    #intro{
+        
+        padding-left: 25px;
+        height:155px;
+    }
+
+    .plus, .minus{
+      vertical-align: bottom;
+      box-sizing: border-box;
+      display: inline-block;
+      margin-left: 12px;
+     
+      width: 21.47px;
+      height: 21.47px;
+      border-radius: 1px;
+      line-height: 17.4px;
+      background-color: transparent;
+      color: rgb(180, 180, 180);
+      text-align: center;
+      border: 1px solid rgb(180 180 180);
+      cursor: pointer;
+      margin-bottom: 0px;
+    }
+
+    .minus{
+      font-weight:bolder;
+    }
+
+    /* label{
+      display: inline-block;
+      margin-bottom: 5px;
+    } */
+
+    section{
+      margin-bottom: 5px;
+    }
+    button{
+        background-color: white;
+        border: 1px solid #dadce0;
+        border-radius: 5px;
+        color: rgb(156, 117, 0);
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+       
+        margin-right: 12px;
+        cursor: pointer;
+    }
+
+    /* #addASet{
+      color: rgb(156, 117, 0);
+      background-color: #fef9ee;
+    } */
+    
+    .smaller {
+      color: #606060;
+      font-size: 13.5px;
+    }
+    input[name="Address"]{
+      width:324.8px;
+    }
+
+    ul{
+      padding-left: 16px;
+      margin-bottom: 25px;
+    }
+
+    li{
+      padding-bottom: 7px;
+    }
+    input[type="submit"]{
+        background-color: rgb(156, 117, 0);
+    border: 1px solid #dadce0;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 12px;
+    cursor: pointer;
+    }
+
+    .whiteRoundedBox{
+        margin-top: 12px;
+        padding-top: 10px;
+        padding-left: 25px;
+        padding-right: 25px;
+        padding-bottom: 25px;
+    }
+     ::-webkit-scrollbar{
+                width:10px;
+            }
+            ::-webkit-scrollbar-track{
+                border-radius: 5px;
+            }
+
+            ::-webkit-scrollbar-thumb{
+                border-radius: 5px;
+                background-color: rgb(246, 227, 171);
+            }
+
+
+  @media screen and (max-width: 900px){
+        body{
+          width:100%;
+          
+      }
+
+      #intro {
+          
+          height: auto;
+      }
+
+      textarea {
+        width: calc(100% - 30px);
+      }
+
+      img{
+        width: 100%;
+      }
+    }
+    </style>
+
+</head>
+<body>
+    <p id="asd"></p>
+        <form name="google-sheet" method="POST" >
+            <div id="introEntire">
+              <div id="darkOrange"></div>
+              <div id="intro">
+                <h1>Dancin Grain Membership</h1>
+                <p>Apply to enjoy discounts and free delivery!</p>
+                <p style="
+    color: #989898;
+    font-size: 16px;
+">2 months - 20% off</br>3 months - 30% off</p>
+              </div>
+            </div>
+            <div id="section1">
+              <div class="whiteRoundedBox">  
+                <p>Name</p>
+                <!-- added the class noOfBottle to check whether user input positive number of phone number -->
+                <input type="text" class="section1InputText" name="Name"> 
+              </div>
+              <div class="whiteRoundedBox">  
+                  <p>Phone Number (sg)</p>
+                  <!-- added the class noOfBottle to check whether user input positive number of phone number -->
+                  <input type="text" class="section1InputText" name="Phone Number (sg)"> 
+              </div>
+              <div class="whiteRoundedBox">  
+                  <p>Email Address</p>
+                  <input type="email" id="email" class="section1InputText" name="Email Address">
+              </div>
+      
+              <div class="whiteRoundedBox"> 
+                  <p>No. of Berry Nice</p>
+                  <input type="number" id="berryNice" class="noOfBottle" oninput="calculatePricePart1(this.value, 1)" name="No. of Berry Nice" min="0" value="0"><p class="minus" onclick="minus($('#berryNice'), 1)">-</p><p class="plus" onclick="plus($('#berryNice'), 1)">+</p> 
+              </div>
+          
+              <div class="whiteRoundedBox"> 
+                  <p>No. of Passion Fruit</p>
+                  <input type="number" id="passionFruit" class="noOfBottle" oninput="calculatePricePart1(this.value, 2)" name="No. of Passion Fruit" min="0" value="0"><p class="minus" onclick="minus($('#passionFruit'), 2)">-</p><p class="plus" onclick="plus($('#passionFruit'), 2)">+</p> 
+              </div>
+      
+              <div class="whiteRoundedBox"> 
+                  <p>No. of Rose Lychee</p>
+                  <input type="number" id="roseLychee" class="noOfBottle" oninput="calculatePricePart1(this.value, 3)" name="No. of Rose Lychee" min="0" value="0"><p class="minus" onclick="minus($('#roseLychee'), 3)">-</p><p class="plus" onclick="plus($('#roseLychee'), 3)">+</p> 
+              </div>
+      
+              <div class="whiteRoundedBox"> 
+                  <p>No. of Floral Blend</p>
+                  <input type="number" id="floralBlend" class="noOfBottle" oninput="calculatePricePart1(this.value, 4)" name="No. of Floral Blend" min="0" value="0"><p class="minus" onclick="minus($('#floralBlend'), 4)">-</p><p class="plus" onclick="plus($('#floralBlend'), 4)">+</p> 
+              </div>
+
+              <div class="whiteRoundedBox"> 
+                <p>No. of Chrysanthemum</p>
+                <input type="number" id="chrysanthemum" class="noOfBottle" oninput="calculatePricePart1(this.value, 5)" name="No. of Chrysanthemum" min="0" value="0"><p class="minus" onclick="minus($('#chrysanthemum'), 5)">-</p><p class="plus" onclick="plus($('#chrysanthemum'), 5)">+</p> 
+            </div>
+            <input type="hidden" name="Presets">
+            <input type="hidden"  name="Total Bottles">
+            <input type="hidden"  name="Total Price">
+            <div class="whiteRoundedBox" id="preset" style="display:none"> 
+              <!-- id and function name canot be the same, otherwise u cant call addSet -->
+              <p style="display: inline-block;"><b>Pre-sets&nbsp;&nbsp;&nbsp;</b></p> <button id="addASet" type="button" onclick="addSet()">Add Set</button> 
+              <br/> <br/>
+              <div id="set1">
+                <p>Set A</p>
+                <select name="set1Part1" onchange="calculatePricePart3($('#set1No').val(), 'set1')">
+                  <option value="bn">Berry Nice</option>
+                  <option value="pf">Passion Fruit</option>
+                  <option value="rl">Rose Lychee</option>
+                  <option value="fb">Floral Blend</option>
+                  <option value="c">Chrysanthemum</option>
+                </select>
+                <br/>
+                <select name="set1Part2" onchange="calculatePricePart3($('#set1No').val(), 'set1')">
+                  <option value="bn">Berry Nice</option>
+                  <option value="pf" selected="selected">Passion Fruit</option>
+                  <option value="rl">Rose Lychee</option>
+                  <option value="fb">Floral Blend</option>
+                  <option value="c">Chrysanthemum</option>
+                </select>
+                <br/>
+                <select name="set1Part3" onchange="calculatePricePart3($('#set1No').val(), 'set1')">
+                  <option value="bn">Berry Nice</option>
+                  <option value="pf">Passion Fruit</option>
+                  <option value="rl" selected="selected">Rose Lychee</option>
+                  <option value="fb">Floral Blend</option>
+                  <option value="c">Chrysanthemum</option>
+                </select>
+                <br/>
+                <select name="set1Part4" onchange="calculatePricePart3($('#set1No').val(), 'set1')">
+                  <option value="bn">Berry Nice</option>
+                  <option value="pf">Passion Fruit</option>
+                  <option value="rl">Rose Lychee</option>
+                  <option value="fb" selected="selected">Floral Blend</option>
+                  <option value="c">Chrysanthemum</option>
+                </select>
+                <br/>
+                <p>No. of Set A</p>
+                <input type="number" id="set1No" class="noOfBottle" oninput="calculatePricePart3(this.value, 'set1')" name="No. of Set1" min="0" value="0"><p class="minus" onclick="minusSet($('#set1No'), 'set1')">-</p><p class="plus" onclick="plusSet($('#set1No'), 'set1')">+</p>
+                <br/>
+                <br/>
+                <button id="deleteSet1" type="button" onclick="deleteSet('set1')">Delete Set</button>
+                <br/>
+                <br/>
+                <br/>
+            </div>
+          </div>
+      
+              <div class="whiteRoundedBox" style="display:none"> 
+                  <p>Shipment</p>
+                    <section>
+                    <input type="radio" name="Shipment" value="Self Pick-up (Marsilling MRT, NTUC FairPrice)" onchange="calculatePricePart2(0)">
+                    <label>Self Pick-up (Marsilling MRT, NTUC FairPrice)</label><br>
+                  </section>
+                  <section>
+                    <input type="radio" name="Shipment" value="Self Pick-up (Woodlands MRT, QQ Rice store)" onchange="calculatePricePart2(0)">
+                    <label>Self Pick-up (Woodlands MRT, QQ Rice store)</label><br>
+                  </section>
+                  <section>
+                    <input type="radio" name="Shipment" value="Self Pick-up (Admiralty MRT, Bus Stop)" onchange="calculatePricePart2(0)">
+                    <label>Self Pick-up (Admiralty MRT, Bus Stop)</label><br>
+                  </section>
+                  <section>
+                    <input type="radio" name="Shipment" value="Dancin Grain Delivery" onchange="calculatePricePart2(1)">
+                    <label>Dancin Grain Delivery ($8 Delivery charge per location, free delivery for purchases of at least $75)</label><br>
+                  </section>
+                </div>
+              <div class="whiteRoundedBox" style="display:none"> 
+                <p>Buying for someone?</p>
+                <input type="radio" name="sendAsGift" value="yes" onchange="sendAsGiftHideOrUnhide(1)">
+                <label>Yes</label><br>
+                
+    
+                <input type="radio" name="sendAsGift" value="No" onchange="sendAsGiftHideOrUnhide(0)" checked>
+                <label>No</label><br>
+            </div>
+            <div id="allGiftInputs">
+              <div class="whiteRoundedBox">  
+                <p>Recipient's name</p>
+              
+                <input type="text" class="giftInput" name="reName"> 
+              </div>
+
+              <div class="whiteRoundedBox">  
+                <p>Recipient's phone number (sg)</p>
+              
+                <input type="number" class="giftInput" name="rePhone Number (sg)"> 
+              </div>
+
+                <div class="whiteRoundedBox"> 
+                    <p>Gift Message (optional)</p>
+                    <textarea id="giftMessage" name="Gift Message (optional)" rows="5" cols="60" maxlength="200" placeholder="Happy Birthday! Here is a care package for you, cheers to better gut health!&#10;&#10;Love, Mary"></textarea>
+                </div>
+              </div>
+              <div class="whiteRoundedBox" style="display:none"> 
+                <p>Comment/Request (optional, request will be subjected to availability, we will contact you if we have an issue with your request)</p>
+                <textarea id="comment" name="Comment/Request (optional)" rows="5" cols="60" maxlength="200" placeholder="Is it possible for the drinks to be delivered on this sunday 3pm?"></textarea>
+              </div>
+
+              <div class="whiteRoundedBox" id="preset"> 
+                <!-- id and function name canot be the same, otherwise u cant call addSet -->
+                <p style="display: inline-block;">Membership Plan&nbsp;&nbsp;&nbsp;</p>  
+                <br> <br>
+                <div id="set1">
+                  
+                  <select name="set1Part1" onchange="calculatePricePart3($('#set1No').val(), 'set1')">
+                    <option value="bn">2 months (20% off)</option>
+                    <option value="pf">3 months (30% off)</option>
+                  </select>
+                  
+                  
+                  
+                  
+                  
+                  
+                  <br>
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+              </div>
+            </div>
+              <p class="totalPrice"></p>
+      
+              <button id="sect1Next" type="button">Next</button>
+              <p></p>
+            </div>
+            <div id="section2" style="display: none;">
+              <div class="whiteRoundedBox"> 
+                  <p>Pick a date</p>
+                  <section>
+                  <input type="radio" name="Pick a date" value="">
+                  <label class="pickADate"></label><br>
+                </section>
+                <section>
+                  <input type="radio" name="Pick a date" value="">
+                  <label class="pickADate"></label><br>
+                </section>
+                <section>
+                  <input type="radio" name="Pick a date" value="">
+                  <label class="pickADate"></label><br>
+                </section>
+              </div>
+              <div class="whiteRoundedBox"> 
+                  <p>Pick a time</p>
+                  <section>
+                  <input type="radio" name="Pick a time" value="7pm">
+                  <label>7pm</label><br>
+                </section>
+                <section>
+                  <input type="radio" name="Pick a time" value="8pm">
+                  <label>8pm</label><br>
+                </section>
+                <section>
+                  <input type="radio" name="Pick a time" value="9pm">
+                  <label>9pm</label><br>
+                </section>
+                <section>
+                  <input type="radio" name="Pick a time" value="10pm">
+                  <label>10pm</label><br>
+                </section>
+              </div>
+              <p></p>
+              <button id="sect2Back" type="button">Back</button>
+              <button id="sect2Next" type="button">Next</button>
+            </div>
+      
+            <div id="section3" style="display: none;">
+
+                <div class="whiteRoundedBox"> 
+                    <p>Postal Code</p>
+                    <p class="smaller" style="margin-bottom:23px;">**A delivery date(Tues or Thurs) will be generated for you based on your location and order date**</p>
+                    <input type="text" class="section3InputText" name="Postal Code" oninput="getAddress(this)">
+                    
+                </div>
+
+              <div class="whiteRoundedBox"> 
+                  <p>Address</p>
+                  
+                  <input type="text" class="section3InputText" name="Address">
+              </div>
+      
+              <div class="whiteRoundedBox"> 
+                  <p>Unit Number</p>
+                  <input type="text" class="section3InputText" name="Unit Number">
+              </div>
+                  <p><b id="deliveryDate"></b></p>
+                  <p></p>
+                  <button id="sect3Back" type="button">Back</button>
+                  <button id="sect3Next" type="button">Next</button>
+            </div>
+            <div id="section4" style="display: none;">
+              <!-- <input type="hidden" name="entry.1020438313"> -->
+            
+              <div class="whiteRoundedBox"> 
+                <p id="orderSummary"></p>
+                <p class="totalPrice" style="margin-bottom: 0px;"></p>
+              </div>
+
+              <div class="whiteRoundedBox" id="reviewGroup"> 
+                <p>Facebook Review</p>
+                <p>Make a review on our <a href="https://www.facebook.com/dancingrainsg/reviews/?ref=page_internal" target="_blank">facebook page</a> and upload a screenshot of the review here.(optional) <br/>  <br/> Please pay the total price shown in the order summary above, delivery charges will be refunded after verification. </p>
+               
+                <p></p>
+                <input type="file" name="Facebook Review" id="myFile2">
+            </div>
+              <div class="whiteRoundedBox"> 
+                  <p>(PayLah!/PayNow) Transaction Ref. No./Google Transaction ID</p>
+                  <p>𝐏𝐥𝐞𝐚𝐬𝐞 𝐬𝐞𝐧𝐝 𝐭𝐡𝐞 𝐩𝐚𝐲𝐦𝐞𝐧𝐭 𝐭𝐨 𝟗𝟔𝟏𝟕𝟏𝟏𝟏𝟗 (𝐏𝐚𝐲𝐋𝐚𝐡!/𝐏𝐚𝐲𝐍𝐨𝐰) 𝐚𝐧𝐝 𝐮𝐩𝐥𝐨𝐚𝐝 𝐚 𝐬𝐜𝐫𝐞𝐞𝐧𝐬𝐡𝐨𝐭 𝐨𝐟 𝐭𝐡𝐞 "𝐓𝐫𝐚𝐧𝐬𝐚𝐜𝐭𝐢𝐨𝐧 𝐑𝐞𝐟. 𝐍𝐨./𝐆𝐨𝐨𝐠𝐥𝐞 𝐓𝐫𝐚𝐧𝐬𝐚𝐜𝐭𝐢𝐨𝐧 𝐈𝐃" 𝐡𝐞𝐫𝐞.</p>
+                  <img  src="https://drive.google.com/uc?export=download&id=1LIzSp6inArSpWziktjTNXpSwvyr0tk9b">
+                  <p></p>
+                  <input type="file" name="(PayLah!/PayNow) Transaction Ref. No./Google Transaction ID" id="myFile">
+              </div>
+              
+              
+              <b><p id="processing"></p></b>
+              <button id="sect4Back" type="button">Back</button>
+               
+            <input type="submit" id="submitBtn" value="Submit">
+           
+            <p></p>
+            </div>
+           
+            <!-- <input type="button" id="submitBtn" onclick="submission(this)" value="Upload Files"/> -->
+            
+            
+          </form>
+
+
+
+
+
+
+
+
+
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      
+    //   document.getElementById('submitBtn').addEventListener('click', 
+    //   function(e){
+    //       $('#submitBtn').prop('disabled', true);
+    //      google.script.run.withSuccessHandler(onSuccess).uploadFiles(this.parentNode.parentNode); // this.parentNode wont work as uploadFiles is expecting a form element as an object to access the myFile property/element
+    //   });
+      // function submission(e){
+      //   google.script.run.uploadFiles(e.parentNode);
+      // }
+
+    //   function onSuccess(data){
+    //     if(document.getElementById("myFile").value == ""){
+    //       alert("Please upload a screen shot of the 'Transaction Ref. No./Google Transcation ID'");
+    //       $('#submitBtn').prop('disabled', false);
+    //       return;
+    //     }
+    //     document.getElementsByName('entry.1020438313')[0].value =  data;
+    //     $("input[type='submit']").trigger("click");
+    //   }
+
+
+
+
+
+
+
+
+
+
+
+
+    document.getElementById("myFile2").addEventListener('change', function(){
+         var ext = this.value.match(/\.[^\.]+$/)[0]; // \. is for escaping and interpreting as .
+
+         switch(ext){
+           case ".png":
+           case ".jpg":
+           case ".jpeg":
+           case ".PNG":
+           case ".JPG":
+           case ".JPEG":
+            break;
+          default:
+            alert('Please upload an image.');
+            this.value = "";
+
+
+         }
+      })
+
+      document.getElementById("myFile").addEventListener('change', function(){
+         var ext = this.value.match(/\.[^\.]+$/)[0]; // \. is for escaping and interpreting as .
+
+         switch(ext){
+           case ".png":
+           case ".jpg":
+           case ".jpeg":
+           case ".PNG":
+           case ".JPG":
+           case ".JPEG":
+            break;
+          default:
+            alert('Please upload an image.');
+            this.value = "";
+
+
+         }
+      })
+
+
+
+
+
+
+
+
+
+
+    var options = {year: '2-digit', month: 'short', day: 'numeric' };
+    function inputDateAsValue(index, slackTimeDays){
+
+      var dateWithSlackTimeDays = new Date(Date.now() + 1000*60*60*24*slackTimeDays).toLocaleDateString("en-US", options);
+      document.getElementsByName('Pick a date')[index].value = dateWithSlackTimeDays;
+      document.getElementsByClassName("pickADate")[index].innerHTML = dateWithSlackTimeDays;
+    }
+
+    inputDateAsValue(0, 3);
+    inputDateAsValue(1, 4);
+    inputDateAsValue(2, 5);
+
+    var berryNiceNo = 0;
+    var passionFruitNo = 0;
+    var roseLycheeNo = 0;
+    var floralBlendNo = 0;   
+    var chrysanthemumNo = 0; 
+    var shipping = 0;
+    var separateAndPresetsArray = [];
+    var presetTextArray = [];
+    var totalNoPart2 = 0;
+    var totalPrice = 0;
+    function calculatePricePart1(v, n){
+      if(v ==""){
+          v = 0;
+      }
+
+      if(v % 1 != 0 || v < 0){
+        $('.totalPrice').html('');
+        return false;
+      }
+
+     
+      
+
+      switch(n){
+        case 1:
+          berryNiceNo = parseInt(v);
+          break;
+        case 2:
+          passionFruitNo = parseInt(v);
+          break;
+        case 3:
+          roseLycheeNo = parseInt(v);
+          break;
+        case 4:
+          floralBlendNo = parseInt(v);   
+          break;
+        case 5:
+          chrysanthemumNo = parseInt(v);   
+          break;
+      }
+      var totalNo = berryNiceNo + passionFruitNo + roseLycheeNo + floralBlendNo + chrysanthemumNo;
+      totalNoPart2 = 0;
+      separateAndPresetsArray[0] = totalNo;
+      for(i = 0;i<separateAndPresetsArray.length;i++){
+        if(separateAndPresetsArray[i] !== undefined){
+          totalNoPart2 += separateAndPresetsArray[i];
+        }
+        
+      }
+      totalPrice = totalNoPart2 * 6.9 - Math.floor(totalNoPart2/4) * 2.6 + shipping - (totalNoPart2 >= 12 && shipping == 8 ? 8 : 0);
+      $("input[name='Total Price']").val(totalPrice);
+      if($("#separate").length){
+        $("#separate").remove();
+      }
+      $('#orderSummary').prepend("<div id='separate'><b>Order Summary</b><br/><ul><li>Berry Nice x " + berryNiceNo + "</li><li>Passion Fruit x " + passionFruitNo + "</li><li>Rose Lychee x " + roseLycheeNo + "</li><li>" + "Floral Blend x " + floralBlendNo + "</li><li>" + "Chrysanthemum x " + chrysanthemumNo + "</li></ul></div>")
+      $('.totalPrice').html("Total Price: $" + totalPrice.toFixed(2));
+
+    }
+
+    function calculatePricePart2(isDeliver){
+      totalNoPart2 = 0;
+      if(!isDeliver){
+        shipping = 0;
+      }else{
+        shipping = 8;
+      }
+       var totalNo = berryNiceNo + passionFruitNo + roseLycheeNo + floralBlendNo + chrysanthemumNo;
+       separateAndPresetsArray[0] = totalNo;
+        for(i = 0;i<separateAndPresetsArray.length;i++){
+          if(separateAndPresetsArray[i] !== undefined){
+            totalNoPart2 += separateAndPresetsArray[i];
+          }
+        
+      }
+
+      $("input[name='Total Bottles']").val(totalNoPart2);
+      totalPrice = totalNoPart2 * 6.9 - Math.floor(totalNoPart2/4) * 2.6 + shipping - (totalNoPart2 >= 12 && shipping == 8 ? 8 : 0);
+      $("input[name='Total Price']").val(totalPrice);
+      // document.getElementById("totalPrice").innerHTML =  "Total Price: $" + totalPrice.toFixed(2);
+      if($("#separate").length){
+        $("#separate").remove();
+      }
+      $('#orderSummary').prepend("<div id='separate'><b>Order Summary</b><br/><ul><li>Berry Nice x " + berryNiceNo + "</li><li>Passion Fruit x " + passionFruitNo + "</li><li>Rose Lychee x " + roseLycheeNo + "</li><li>" + "Floral Blend x " + floralBlendNo + "</li><li>" + "Chrysanthemum x " + chrysanthemumNo + "</li></ul></div>")
+       $('.totalPrice').html("Total Price: $" + totalPrice.toFixed(2));
+    }
+
+    function calculatePricePart3(v, set){
+      var presetTexts = "";
+      if(v == ""){
+        v = 0;
+      }
+
+      // if a ceratin set value is 0, then there will be 0 certain set of 4, the corresponding preset text will be empty
+      if(v == 0){
+        separateAndPresetsArray[set.substring(3, set.length)] = 0;
+        presetTextArray[set.substring(3, set.length)] = '';
+        $("#" + set + "OrderSummary").remove();
+        calculatePricePart2(shipping == 0 ? 0 : 1);
+
+
+        for(i=1;i<presetTextArray.length;i++){
+        console.log("#set" + i + "OrderSummary");
+        if(presetTextArray[i] !== undefined){
+
+          presetTexts += presetTextArray[i];
+        }
+      }
+      presetTexts = presetTexts.replace(/<br\/>/g, "\n");
+      presetTexts = presetTexts.replace(/<\/div>/g, "");
+      presetTexts = presetTexts.replace(/<div id="set\d+OrderSummary">/g, "");
+      $("input[name='Presets']").val(presetTexts);
+
+
+        return;
+      }
+      if(v % 1 != 0 || v < 0){
+        $('.totalPrice').html('');
+        return;
+      }
+      separateAndPresetsArray[set.substring(3, set.length)] = 4 * v;
+      calculatePricePart2(shipping == 0 ? 0 : 1);
+      var boughtSetAlphabet = 'A'; // can be any character
+      
+      
+
+      for(i=1; i<=set.substring(3, set.length);i++){
+        if(i % 27 == 0){
+          boughtSetAlphabet += 'A';
+        }
+      }
+
+      
+
+
+      presetTextArray[set.substring(3, set.length)] = '<div id="' + set +'OrderSummary">Set ' + boughtSetAlphabet.replace(/./g, String.fromCharCode(64 + ((set.substring(3, set.length) - 1) % 26) + 1))  + ' x ' + v + '<br/><br/>';
+      for(i = 1;i<5;i++){
+        var setNoPartI = $('select[name="' + set + 'Part' + i + '"]').val();
+        
+        switch(setNoPartI){
+          case 'bn':
+            presetTextArray[set.substring(3, set.length)] += 'Berry Nice <br/>';
+            break;
+          case 'pf':
+            presetTextArray[set.substring(3, set.length)] += 'Passion Fruit <br/>';
+            break;
+          case 'rl':
+            presetTextArray[set.substring(3, set.length)] += 'Rose Lychee <br/>';
+            break;
+          case 'fb':
+            presetTextArray[set.substring(3, set.length)] += 'Floral Blend <br/>';
+            break;
+          case 'c':
+            presetTextArray[set.substring(3, set.length)] += 'Chrysanthemum <br/>';
+            break;
+        }
+        
+      }
+      presetTextArray[set.substring(3, set.length)] += '<br/><br/></div>';
+
+     
+      for(i=1;i<presetTextArray.length;i++){
+        console.log("#set" + i + "OrderSummary");
+        if(presetTextArray[i] !== undefined){
+
+          // refresh all the set texts
+          if($("#set" + i + "OrderSummary").length){
+            $("#set" + i + "OrderSummary").remove();
+          }
+          $('#orderSummary').append(presetTextArray[i]);
+          presetTexts += presetTextArray[i];
+        }
+      }
+      presetTexts = presetTexts.replace(/<br\/>/g, "\n");
+      presetTexts = presetTexts.replace(/<\/div>/g, "");
+      presetTexts = presetTexts.replace(/<div id="set\d+OrderSummary">/g, "");
+      $("input[name='Presets']").val(presetTexts);
+      
+
+    }
+
+
+    var setCounter = 1;
+    var setCounterV2 = 1;
+    var setAlphabet = 'A';
+
+   
+
+    function deleteSet(set){
+      var presetTexts = "";
+      separateAndPresetsArray[set.substring(3, set.length)] = 0;
+      $('#' + set).remove();
+      presetTextArray[set.substring(3, set.length)] = '';
+      $('#' + set + 'OrderSummary').remove();
+      calculatePricePart2(shipping == 0 ? 0 : 1);
+
+
+
+      for(i=1;i<presetTextArray.length;i++){
+        console.log("#set" + i + "OrderSummary");
+        if(presetTextArray[i] !== undefined){
+
+          presetTexts += presetTextArray[i];
+        }
+      }
+      presetTexts = presetTexts.replace(/<br\/>/g, "\n");
+      presetTexts = presetTexts.replace(/<\/div>/g, "");
+      presetTexts = presetTexts.replace(/<div id="set\d+OrderSummary">/g, "");
+      $("input[name='Presets']").val(presetTexts);
+    }
+    function addSet(){
+      if(setCounter % 26 == 0){
+        setAlphabet += 'A';
+        setCounterV2 = 0;
+      }
+      setCounterV2 += 1;
+      setCounter += 1; // I have a setCounterV2 to reset it back to 0 to use it as char code for regex, setCounter cannot go back to 0, there might be 2 sets with the same id and it will become a bug when both set no values changes when the user only edit 1 of them
+      $("#preset").append(`<div id="set` +  setCounter + `">
+                <p>Set ` + setAlphabet.replace(/./g, String.fromCharCode(64 + setCounterV2)) + `</p>
+                <select name="set` + setCounter + `Part1" onchange="calculatePricePart3($('#set` + setCounter + `No').val(), 'set` + setCounter + `')">
+                  <option value="bn">Berry Nice</option>
+                  <option value="pf">Passion Fruit</option>
+                  <option value="rl">Rose Lychee</option>
+                  <option value="fb">Floral Blend</option>
+                  <option value="c">Chrysanthemum</option>
+                </select>
+                <br/>
+                <select name="set` + setCounter + `Part2" onchange="calculatePricePart3($('#set` + setCounter + `No').val(), 'set` + setCounter + `')">
+                  <option value="bn">Berry Nice</option>
+                  <option value="pf" selected="selected">Passion Fruit</option>
+                  <option value="rl">Rose Lychee</option>
+                  <option value="fb">Floral Blend</option>
+                  <option value="c">Chrysanthemum</option>
+                </select>
+                <br/>
+                <select name="set` + setCounter + `Part3" onchange="calculatePricePart3($('#set` + setCounter + `No').val(), 'set` + setCounter + `')">
+                  <option value="bn">Berry Nice</option>
+                  <option value="pf">Passion Fruit</option>
+                  <option value="rl" selected="selected">Rose Lychee</option>
+                  <option value="fb">Floral Blend</option>
+                  <option value="c">Chrysanthemum</option>
+                </select>
+                <br/>
+                <select name="set` + setCounter + `Part4" onchange="calculatePricePart3($('#set` + setCounter + `No').val(), 'set` + setCounter + `')">
+                  <option value="bn">Berry Nice</option>
+                  <option value="pf">Passion Fruit</option>
+                  <option value="rl">Rose Lychee</option>
+                  <option value="fb" selected="selected">Floral Blend</option>
+                  <option value="c">Chrysanthemum</option>
+                </select>
+                <br/>
+                <p>No. of Set ` + setAlphabet.replace(/./g, String.fromCharCode(64 + setCounterV2)) + `</p>
+                <input type="number" id="set` + setCounter + `No" class="noOfBottle" oninput="calculatePricePart3(this.value, 'set` + setCounter + `')" name="No. of Set` + setCounter + `" min="0" value="0"><p class="minus" onclick="minusSet($('#set` + setCounter + `No'), 'set` + setCounter + `')">-</p><p class="plus" onclick="plusSet($('#set` + setCounter + `No'), 'set` + setCounter + `')">+</p>
+                <br/>
+                <br/>
+                <button id="deleteSet` + setCounter + `" type="button" onclick="deleteSet('set` + setCounter + `')">Delete Set</button>
+                <br/>
+                <br/>
+                <br/>
+            </div>`);
+    }
+
+
+    function minusSet(v, set){
+        if(v.val()=="" || v.val() % 1 != 0 || v.val() <= 0){
+        v.val(0);
+        calculatePricePart3("0", set); // need to do this because 0 == "" is true
+        return;
+        }
+        v.val(v.val()-1);
+
+        calculatePricePart3(v.val(), set);
+        
+    }
+
+    function plusSet(v, set){
+      if(v.val()=="" || v.val() % 1 != 0 || v.val() < 0){
+        v.val(1);
+        calculatePricePart3(1, set);
+        return;
+      }
+      v.val(parseInt(v.val())+1);
+      calculatePricePart3(v.val(), set);
+
+
+    }
+
+    function minus(v, n){
+      if(v.val()=="" || v.val() % 1 != 0 || v.val() <= 0){
+        v.val(0);
+        calculatePricePart1("0", n); // need to do this because 0 == "" is true
+        return;
+      }
+      v.val(v.val()-1);
+
+      calculatePricePart1(v.val(), n);
+      
+
+
+    }
+
+    function plus(v, n){
+      if(v.val()=="" || v.val() % 1 != 0 || v.val() < 0){
+        v.val(1);
+        calculatePricePart1(1, n);
+        return;
+      }
+      v.val(parseInt(v.val())+1);
+      calculatePricePart1(v.val(), n);
+
+
+    }
+    var sendAsGift = 0;
+    $("#allGiftInputs").hide();
+    function sendAsGiftHideOrUnhide(v){
+      if(v){
+        $("#allGiftInputs").show();
+      }else{
+        $("#allGiftInputs").hide();
+        $(".giftInput").val("");
+        $("#giftMessage").val("");
+      }
+      sendAsGift = v;
+    }
+
+
+
+
+
+
+
+
+
+    var regions = {
+        regionOne: [01, 02, 03, 04, 05, 06, 07, 08, 14, 15, 16, 09, 10, 11, 12, 13, 17, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 81, 51, 52, 53, 54, 55, 82, 56, 57],
+        regionTwo: [58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 77, 78, 75, 76, 79, 80]
+      }
+
+      var options2 = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' };
+      var today  = new Date();
+      var slackTimeDaysDeliveryReg1 = {"Mon": 8, "Tue": 7, "Wed": 6, "Thu": 5, "Fri": 4, "Sat": 10, "Sun": 9};
+      var slackTimeDaysDeliveryReg2 = {"Mon": 10, "Tue": 9, "Wed": 8, "Thu": 7, "Fri": 6, "Sat": 5, "Sun": 4};
+
+    function getAddress(e){
+      console.log(e);
+        if(e.value.length == 6 && !isNaN(e.value)){
+          $.ajax({
+            url:'https://geocode.xyz/' + e.value +'?region=SG',
+            type:'GET',
+            success: function(data){
+                $("input[name='Address']").val($(data).find('#data > ol > li:nth-child(1) > a').text());
+                
+                if(regions.regionOne.includes(parseInt(e.value.substring(0,2)))){
+                  
+                    
+                      $("#deliveryDate").text("Please take note of your delivery date: " + new Date(Date.now() + 1000*60*60*24*slackTimeDaysDeliveryReg1[today.toLocaleDateString("en-US", options2).substring(0,3)]).toLocaleDateString("en-US", options) + ", (7pm to 10pm)");
+                     
+                    
+                }else if(regions.regionTwo.includes(parseInt(e.value.substring(0,2)))){
+                      $("#deliveryDate").text("Please take note of your delivery date: " + new Date(Date.now() + 1000*60*60*24*slackTimeDaysDeliveryReg2[today.toLocaleDateString("en-US", options2).substring(0,3)]).toLocaleDateString("en-US", options) + ", (7pm to 10pm)");
+
+                }else{
+                  $("#deliveryDate").text("");
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) { $("input[name='Address']").val(""); $("#deliveryDate").text("");}
+          });
+
+
+
+        }else{
+          $("input[name='Address']").val(""); $("#deliveryDate").text("");
+        }
+      }
+
+     
+      
+
+    $(document).ready(function() {
+
+      
+
+
+     var section1InputTextValueReqlength = $('.section1InputText').length;
+     var giftInputReqlength = $('.giftInput').length;
+     
+      var section3InputTextValueReqlength = $('.section3InputText').length;
+      var sect2Or3;
+      var section1InputTextValue;
+      var section1InputTextValueNoOfBottle;
+      var section1InputTextValueNoOfBottleReqlength = 0;
+
+
+
+      $("#sect1Next").click(function(){
+        section1InputTextValueNoOfBottleReqlength = $('.noOfBottle').length; // need to put in this click event as the number of such elememts is dynamic due to presets
+        section1InputTextValue = $('.section1InputText').filter(function () {
+        return this.value != '';
+        });
+
+        giftInput = $('.giftInput').filter(function () {
+        return this.value != '';
+        });
+
+        section1InputTextValueNoOfBottle = $('.noOfBottle').filter(function () {
+        return (this.value >= 0 && this.value % 1 == 0) || '';
+        });
+
+        /*
+        check if shipment is selected,
+        name, email and phone number have been filled,
+        number of each drink and preset filled is either a whole number or not filled,
+        at least 1 drink is bought
+        */
+
+         console.log($("input[name='Shipment']:checked").length == 0);
+         console.log(section1InputTextValue.length != section1InputTextValueReqlength);
+         console.log(section1InputTextValueNoOfBottle.length != section1InputTextValueNoOfBottleReqlength);
+         console.log(document.getElementById("email").value.indexOf("@") == -1 );
+         console.log(totalNoPart2 == 0);
+        if ($("input[name='Shipment']:checked").length == 0 || section1InputTextValue.length != section1InputTextValueReqlength || section1InputTextValueNoOfBottle.length != section1InputTextValueNoOfBottleReqlength || document.getElementById("email").value.indexOf("@") == -1 || totalNoPart2 == 0 || (sendAsGift && giftInput.length != giftInputReqlength)) {
+            alert('Please fill out all required fields appropriately.');
+            return;
+        }
+
+
+
+        $("#section1").hide();
+        if($("input[name='Shipment']:checked").val() == "Dancin Grain Delivery"){
+            $("#section3").show();
+            $('input[name="Pick a time"]').prop('checked', false); 
+            $('input[name="Pick a date"]').prop('checked', false); 
+        }else{
+            $("#section2").show();
+            $('input[name="Postal Code"]').val(''); 
+            $('input[name="Address"]').val(''); 
+            $('input[name="Unit Number"]').val(''); 
+
+        }
+      })
+
+      $("#sect2Back").click(function(){
+          $("#section1").show();
+          $("#section2").hide();
+          
+          
+      })
+
+      $("#sect2Next").click(function(){
+          
+          if ($("input[name='Pick a date']:checked").length == 0 || $("input[name='Pick a time']:checked").length == 0) {
+            alert('Please fill out all required fields appropriately.');
+            return;
+          } 
+          if(totalPrice < 75  && totalPrice >= 25 && shipping == 8){
+            $("#reviewGroup").show();
+          }else{
+            $("#reviewGroup").hide();
+          }
+          $("#section2").hide();
+          $("#section4").show();
+          sect2Or3 = 2;
+      })
+
+      
+      $("#sect3Back").click(function(){
+          $("#section1").show();
+          $("#section3").hide();
+          
+          
+      })
+
+      $("#sect3Next").click(function(){
+          var section3InputTextValue = $('.section3InputText').filter(function () {
+          return this.value != '';
+          });
+
+          if (section3InputTextValue.length !== section3InputTextValueReqlength || $("#deliveryDate").text() == "") {
+            alert('Please fill out all required fields appropriately.');
+            return;
+          } 
+
+          if(totalPrice < 75  && totalPrice >= 25 && shipping == 8){
+            $("#reviewGroup").show();
+          }else{
+            $("#reviewGroup").hide();
+          }
+          $("#section3").hide();
+          $("#section4").show();
+          sect2Or3 = 3;
+
+
+      })
+
+      $("#sect4Back").click(function(){
+          if(sect2Or3 == 2){
+              $("#section2").show();
+          }else{
+              $("#section3").show();
+          }
+          
+          $("#section4").hide();
+          
+      }) 
+
+      
+   
+    
+    
+		
+    
+
+     
+ });
+    
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <!-- <script>
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbxL5k8P9-vVTUaTTZqmQgxu85oaJTRhJBy5uec0t2_aao6xassFzhSGXCkRxuP3JUlB0Q/exec'
+            const form = document.forms['google-sheet']
+          var a;
+            form.addEventListener('submit', e => {
+              e.preventDefault()
+            
+              fetch(scriptURL, { method: 'POST', body: new FormData(form)}) // new FormData contains a literal object with name/value pairs from the form
+                .then(response => alert("great"))
+                .catch(error => console.error('Error!', error.message))
+            })
+          </script> -->
+
+
+
+
+          <script>
+              const form = document.forms['google-sheet'];
+              form.addEventListener("submit", (e) => {
+                e.preventDefault();
+               
+
+                if($("#section4").is(":hidden")){
+                  return;
+                }
+                $('#submitBtn').prop('disabled', true);
+                if(form['(PayLah!/PayNow) Transaction Ref. No./Google Transaction ID'].value == ''){
+                  alert('𝐏𝐥𝐞𝐚𝐬𝐞 𝐮𝐩𝐥𝐨𝐚𝐝 𝐚 𝐬𝐜𝐫𝐞𝐞𝐧 𝐬𝐡𝐨𝐭 𝐨𝐟 𝐭𝐡𝐞 "𝐓𝐫𝐚𝐧𝐬𝐚𝐜𝐭𝐢𝐨𝐧 𝐑𝐞𝐟. 𝐍𝐨./𝐆𝐨𝐨𝐠𝐥𝐞 𝐓𝐫𝐚𝐧𝐬𝐚𝐜𝐭𝐢𝐨𝐧 𝐈𝐃"')
+                  $('#submitBtn').prop('disabled', false);
+                  return;
+                }
+               
+               
+                
+                $('#processing').text("Processing, please wait...");
+                var file1 = {
+                  name:'empty',
+                  type:'empty'
+                }
+                var faceBookBlob = '';
+               
+
+                if(form['Facebook Review'].value != ''){
+
+                  file1 = form['Facebook Review'].files[0];
+                  var fr1 = new FileReader();
+                  fr1.readAsArrayBuffer(file1);
+                  fr1.onload = (f) =>{
+                    faceBookBlob = [...new Int8Array(f.target.result)];
+                  }
+                }
+
+                const file = form['(PayLah!/PayNow) Transaction Ref. No./Google Transaction ID'].files[0];
+                const fr = new FileReader();
+                fr.readAsArrayBuffer(file);
+                fr.onload = (f) => {
+                  const url = "https://script.google.com/macros/s/AKfycbx99bXNAYUjcPm_6UbUSP4j-amAGGXGyasKwygHvdeSfuMtAcQlHovzQRFI-WDJMEUsTg/exec"; 
+                  const qs = new URLSearchParams({
+                    filename: file.name,
+                    mimeType: file.type,
+                    filename1: file1.name,
+                    mimeType1: file1.type,
+                  });
+                  fetch(`${url}?${qs}`, {
+                    method: "POST",
+                    body: JSON.stringify({'(PayLah!/PayNow) Transaction Ref. No./Google Transaction ID': [...new Int8Array(f.target.result)],
+                                        'Facebook Review': faceBookBlob,
+                                        'Name': $("input[name='Name']").val(), 
+                                        'Phone Number (sg)': $("input[name='Phone Number (sg)']").val(), 
+                                        'Email Address': $("input[name='Email Address']").val(), 
+                                        'No. of Berry Nice': $("input[name='No. of Berry Nice']").val(),
+                                        'No. of Passion Fruit': $("input[name='No. of Passion Fruit']").val(), 
+                                        'No. of Rose Lychee': $("input[name='No. of Rose Lychee']").val(), 
+                                        'No. of Floral Blend': $("input[name='No. of Floral Blend']").val(),
+                                        'No. of Chrysanthemum': $("input[name='No. of Chrysanthemum']").val(),
+                                        'Presets': $("input[name='Presets']").val(), 
+                                        'Total Bottles': $("input[name='Total Bottles']").val(), 
+                                        'Total Price': $("input[name='Total Price']").val(), 
+                                        'Shipment': $("input[name='Shipment']:checked").val(),
+                                        'Recipient\'s name': $("input[name='reName']").val(), 
+                                        'Recipient\'s phone number (sg)': $("input[name='rePhone Number (sg)']").val(), 
+                                        'Gift Message (optional)': $("textarea[name='Gift Message (optional)']").val(),
+                                        'Comment/Request (optional)': $("textarea[name='Comment/Request (optional)']").val(),  
+                                        'Pick a date': $("input[name='Pick a date']:checked").val(), 
+                                        'Pick a time': $("input[name='Pick a time']:checked").val(), 
+                                        'Postal Code': $("input[name='Postal Code']").val(), 
+                                        'Address': $("input[name='Address']").val(), 
+                                        'Unit Number': $("input[name='Unit Number']").val(),
+                                        'Delivery Date': $("#deliveryDate").text().substring(40, $("#deliveryDate").text().length - 15) })
+                  })
+                    .then((res) => {alert('Thank you for your order, We have sent you an email.');
+                    location.reload();})
+                    .then(console.log)
+                    .catch(console.log);
+                };
+              });
+          </script>
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</body>
+</html>
