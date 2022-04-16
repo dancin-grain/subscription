@@ -783,7 +783,7 @@
                 const fr = new FileReader();
                 fr.readAsArrayBuffer(file);
                 fr.onload = (f) => {
-                  const url = "https://script.google.com/macros/s/AKfycbw2DbC6Y1a3iURaEoS6WPocvoeUv5peUlC1naZrzMiDY5RMegzsDCDYYyAgVWBr4sUX/exec"; 
+                  const url = "https://script.google.com/macros/s/AKfycbxI4Yvjxlif8Cl-wnN0i6-QziPlPOo8RN1Kmp0mAh8EjdjMxMer0fl2aNcAzJRH48c/exec"; 
                   const qs = new URLSearchParams({
                     filename: file.name,
                     mimeType: file.type,
@@ -812,7 +812,7 @@
                                         'Verification': 'Pending',
                                         'VEmail': 'Pending',
                                         'VDateline': slackTimeDaysDeliveryReg1[today.toLocaleDateString("en-US", options2).substring(0,3)] - 1,
-                                        'Week No.': '1/' + ($("#mplan").val() == 0.9 ? 8 : 12)  })
+                                        'Week No.': '#1/' + ($("#mplan").val() == 0.9 ? 8 : 12)  })
                   })
                     .then((res) => {alert('Thank you for your order, We have sent you an email.');
                     location.reload();})
