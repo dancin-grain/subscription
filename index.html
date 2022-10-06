@@ -79,6 +79,7 @@
       border: 1px solid rgb(180 180 180);
       cursor: pointer;
       margin-bottom: 0px;
+      user-select: none;
     }
 
     .minus{
@@ -193,6 +194,10 @@
     
     margin-right: calc(100% - 530px);
   }
+  .whiteRoundedBox.drinksStyle.bs {
+    
+    margin-right: calc(100% - 530px);
+  }
   .whiteRoundedBox.drinksStyle.fb {
   
   margin-right: calc(100% - 530px);
@@ -298,6 +303,12 @@
                 <p>No. of Chrysanthemum</p>
                 <img class="productPhoto" style="width:208px;" src="https://drive.google.com/uc?export=download&id=17andiOsPirqmdG1gxBMIf5nEKefHBqh3">
                 <input type="number" id="chrysanthemum" class="noOfBottle" oninput="calculatePricePart1(this.value, 5)" name="No. of Chrysanthemum" min="0" value="0"><p class="minus" onclick="minus($('#chrysanthemum'), 5)">-</p><p class="plus" onclick="plus($('#chrysanthemum'), 5)">+</p> 
+              </div><!--
+            
+              --><div class="whiteRoundedBox drinksStyle bs"> 
+                <p>No. of Berry Spooky</p>
+                <img class="productPhoto" style="width:208px;" src="https://drive.google.com/uc?export=download&id=1nXkcS7DaP09UBo-glVjX2yG70-8o77LY">
+                <input type="number" id="berrySpooky" class="noOfBottle" oninput="calculatePricePart1(this.value, 6)" name="No. of Berry Spooky" min="0" value="0"><p class="minus" onclick="minus($('#berrySpooky'), 6)">-</p><p class="plus" onclick="plus($('#berrySpooky'), 6)">+</p> 
             </div>
             <input type="hidden" name="Presets">
             <input type="hidden"  name="Total Bottles">
@@ -314,6 +325,7 @@
                   <option value="rl">Rose Lychee</option>
                   <option value="fb">Floral Blend</option>
                   <option value="c">Chrysanthemum</option>
+                  <option value="bs">Berry Spooky</option>
                 </select>
                 <br/>
                 <select name="set1Part2" onchange="calculatePricePart3($('#set1No').val(), 'set1')">
@@ -322,6 +334,7 @@
                   <option value="rl">Rose Lychee</option>
                   <option value="fb">Floral Blend</option>
                   <option value="c">Chrysanthemum</option>
+                  <option value="bs">Berry Spooky</option>
                 </select>
                 <br/>
                 <select name="set1Part3" onchange="calculatePricePart3($('#set1No').val(), 'set1')">
@@ -330,6 +343,7 @@
                   <option value="rl" selected="selected">Rose Lychee</option>
                   <option value="fb">Floral Blend</option>
                   <option value="c">Chrysanthemum</option>
+                  <option value="bs">Berry Spooky</option>
                 </select>
                 <br/>
                 <select name="set1Part4" onchange="calculatePricePart3($('#set1No').val(), 'set1')">
@@ -338,6 +352,7 @@
                   <option value="rl">Rose Lychee</option>
                   <option value="fb" selected="selected">Floral Blend</option>
                   <option value="c">Chrysanthemum</option>
+                  <option value="bs">Berry Spooky</option>
                 </select>
                 <br/>
                 <p>No. of Set A</p>
@@ -514,6 +529,7 @@
     var roseLycheeNo = 0;
     var floralBlendNo = 0;   
     var chrysanthemumNo = 0; 
+    var berrySpookyNo = 0; 
     var shipping = 0;
     var separateAndPresetsArray = [];
     var presetTextArray = [];
@@ -549,8 +565,11 @@
         case 5:
           chrysanthemumNo = parseInt(v);   
           break;
+        case 6:
+          berrySpookyNo = parseInt(v);   
+          break;
       }
-      totalNo = berryNiceNo + passionFruitNo + roseLycheeNo + floralBlendNo + chrysanthemumNo;
+      totalNo = berryNiceNo + passionFruitNo + roseLycheeNo + floralBlendNo + chrysanthemumNo + berrySpookyNo;
       $("input[name='Total Bottles']").val(totalNo);
       if(totalNo < 6){
         $('.totalPrice').html("");
@@ -562,7 +581,7 @@
       if($("#separate").length){
         $("#separate").remove();
       }
-      $('#orderSummary').prepend("<div id='separate'><b>Order Summary</b><br/><ul><li>Berry Nice x " + berryNiceNo + "</li><li>Passion Fruit x " + passionFruitNo + "</li><li>Rose Lychee x " + roseLycheeNo + "</li><li>" + "Floral Blend x " + floralBlendNo + "</li><li>" + "Chrysanthemum x " + chrysanthemumNo + "</li></ul></div>")
+      $('#orderSummary').prepend("<div id='separate'><b>Order Summary</b><br/><ul><li>Berry Nice x " + berryNiceNo + "</li><li>Passion Fruit x " + passionFruitNo + "</li><li>Rose Lychee x " + roseLycheeNo + "</li><li>" + "Floral Blend x " + floralBlendNo + "</li><li>" + "Chrysanthemum x " + chrysanthemumNo + "</li><li>" + "Berry Spooky x " + berrySpookyNo + "</li></ul></div>")
       $('.totalPrice').html("Total Price: $" + (Math.round(totalPrice * 10) /10).toFixed(2));
 
     }
@@ -574,7 +593,7 @@
       }else{
         shipping = 8;
       }
-       var totalNo = berryNiceNo + passionFruitNo + roseLycheeNo + floralBlendNo + chrysanthemumNo;
+       var totalNo = berryNiceNo + passionFruitNo + roseLycheeNo + floralBlendNo + chrysanthemumNo + berrySpookyNo;
        separateAndPresetsArray[0] = totalNo;
         for(i = 0;i<separateAndPresetsArray.length;i++){
           if(separateAndPresetsArray[i] !== undefined){
@@ -590,7 +609,7 @@
       if($("#separate").length){
         $("#separate").remove();
       }
-      $('#orderSummary').prepend("<div id='separate'><b>Order Summary</b><br/><ul><li>Berry Nice x " + berryNiceNo + "</li><li>Passion Fruit x " + passionFruitNo + "</li><li>Rose Lychee x " + roseLycheeNo + "</li><li>" + "Floral Blend x " + floralBlendNo + "</li><li>" + "Chrysanthemum x " + chrysanthemumNo + "</li></ul></div>")
+      $('#orderSummary').prepend("<div id='separate'><b>Order Summary</b><br/><ul><li>Berry Nice x " + berryNiceNo + "</li><li>Passion Fruit x " + passionFruitNo + "</li><li>Rose Lychee x " + roseLycheeNo + "</li><li>" + "Floral Blend x " + floralBlendNo + "</li><li>" + "Chrysanthemum x " + chrysanthemumNo + "</li><li>" + "Berry Spooky x " + berrySpookyNo + "</li></ul></div>")
        $('.totalPrice').html("Total Price: $" + totalPrice.toFixed(2));
     }
 
@@ -833,7 +852,7 @@
                 const fr = new FileReader();
                 fr.readAsArrayBuffer(file);
                 fr.onload = (f) => {
-                  const url = "https://script.google.com/macros/s/AKfycbx18uz7_6-0Bafh3BSv3ZN0BXC1jvF6pGTkACw-z1Jud0FOtB950FpErg4wu3SYiMXQ/exec"; 
+                  const url = "https://script.google.com/macros/s/AKfycbwjCCookrInplKFbX3hAhjKwc8tT40SvCNPGrfcq4x6QkiJ0fRmUMySy5Td1MQ7Ad3O/exec"; 
                   const qs = new URLSearchParams({
                     filename: file.name,
                     mimeType: file.type,
@@ -852,6 +871,7 @@
                                         'No. of Rose Lychee': $("input[name='No. of Rose Lychee']").val(), 
                                         'No. of Floral Blend': $("input[name='No. of Floral Blend']").val(),
                                         'No. of Chrysanthemum': $("input[name='No. of Chrysanthemum']").val(),
+                                        'No. of Berry Spooky': $("input[name='No. of Berry Spooky']").val(),
                                         'Total Bottles Per Week': $("input[name='Total Bottles']").val() / ($("#mplan").val() == 0.9 ? 8 : 12),
                                         'Total Bottles': $("input[name='Total Bottles']").val(), 
                                         'Total Price': $("input[name='Total Price']").val(), 
