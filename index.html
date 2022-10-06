@@ -581,7 +581,7 @@
       }
       
       totalPrice = totalNo * 6.9 *  $("#mplan").val() * ($("#mplan").val() == 0.9 ? 8 : 12);
-      $("input[name='Total Price']").val(Math.round(totalPrice));
+      $("input[name='Total Price']").val((Math.round(totalPrice * 10) /10).toFixed(2));
       if($("#separate").length){
         $("#separate").remove();
       }
