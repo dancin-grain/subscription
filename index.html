@@ -158,6 +158,10 @@
     box-sizing: border-box;
     margin-right: calc((800px - 780px)/2);
 }
+.whiteRoundedBox.drinksStyle.bs {
+    
+    margin-right: 0px;
+  }
      ::-webkit-scrollbar{
                 width:10px;
             }
@@ -852,7 +856,7 @@
                 const fr = new FileReader();
                 fr.readAsArrayBuffer(file);
                 fr.onload = (f) => {
-                  const url = "https://script.google.com/macros/s/AKfycbwjCCookrInplKFbX3hAhjKwc8tT40SvCNPGrfcq4x6QkiJ0fRmUMySy5Td1MQ7Ad3O/exec"; 
+                  const url = "https://script.google.com/macros/s/AKfycbxf2NJ6VtRAqIWiPQbrHB0Jid2aiKiTjQpaIdS6oWQFA0vYCXLuGBqZyhBRN5OSe1z-/exec"; 
                   const qs = new URLSearchParams({
                     filename: file.name,
                     mimeType: file.type,
